@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.Color;
-import java.util.HashMap;
+/** A class that manages all properties
+* and methods of piece objects */
 
 public class Piece {
 
@@ -15,6 +16,8 @@ public class Piece {
    public ArrayList<String> takenCoordinates = new ArrayList<String>();
    public ArrayList<Integer> deadPieces = new ArrayList<Integer>();
    
+   /** constructor for piece object with their piece type (direction faced),
+   * upmost y coordinate, and leftmost x coordinate */
    public Piece(int pieceType,int xPos,int yPos) {
    
       this.pieceType = pieceType;
@@ -24,12 +27,17 @@ public class Piece {
    
    }
    
+   /** accessor method for the pieces taken coordinates */
    public ArrayList<String> getCoords() {
    
       return this.takenCoordinates;
    
    }
    
+   /** A method that removes all neccessary blocks from
+   * pieces upon the clearance of a line
+   @param lineRemoved The row that was cleared
+   */
    public void clearPiecesFromLine(int lineRemoved) {
    
 
@@ -80,6 +88,11 @@ public class Piece {
    
    }
    
+   /** A method that updates the pieces taken coordinates based
+   * on its movement
+   * @param xPos The current x position of the piece (the leftmost block of the piece)
+   * @param yPos The current y position of the piece (the upmost block of the piece)
+   */
    public void updateCoordinates(int xPos,int yPos) {
    
       
@@ -151,8 +164,6 @@ public class Piece {
          PieceManager.map[Y-1][X-1] = "Piece";
       
       }
-      
-      //System.out.println(this.xPos + "," + this.yPos);
    
    }
    

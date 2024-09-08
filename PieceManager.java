@@ -5,6 +5,10 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.Collections;
 
+/** Class that manages the creation, and alteration
+* of all piece objects on the Tetris grid 
+*/
+
 public class PieceManager {
 
    public static ArrayList<Piece> pieces = new ArrayList<Piece>();
@@ -12,6 +16,8 @@ public class PieceManager {
    static GamePanel gp;
    public static Random rand = new Random();
    
+   /** constructor that links the class to the GamePanel,
+   and generates the first piece */
    public PieceManager(GamePanel gp) {
    
       this.gp = gp;
@@ -19,6 +25,7 @@ public class PieceManager {
    
    }
    
+   /** method that generates a new piece on the top of the grid */
    public static void generatePiece() {
    
       int type = rand.nextInt(1,5);
@@ -27,12 +34,15 @@ public class PieceManager {
    
    }
    
+   /** method that checks if a line has been cleared on the Tetris grid */
+   
    public static void checkIfLineCleared() {
    
       for (int i = 0; i < map.length; i++) {
       
          int fillCounter = 0;
          
+         // fillCounter tracks the blocks per row
          for (int j = 0; j < map[i].length; j++) {
          
             if(map[i][j] != null) {
@@ -60,7 +70,11 @@ public class PieceManager {
    }
    
    
-   
+   /**
+   * A method that automatically moves the
+   * recently added Tetris piece down every
+   * 750 milliseconds, and generates a new
+   piece if collision occurs */
    public static void movePiece() {
    
       try {
@@ -99,6 +113,8 @@ public class PieceManager {
    
    }
    
+   /** a method that moves the most recently added piece one spot to the left
+   * if it is legal, and the user presses the correct key */
    public static void movePieceLeft() {
    
       Piece p = pieces.get(pieces.size() - 1);
@@ -120,6 +136,8 @@ public class PieceManager {
    
    }
    
+   /** a method that moves the most recently added piece one spot to the right
+   * if it is legal, and the user presses the correct key */
    public static void movePieceRight() {
    
       Piece p = pieces.get(pieces.size() - 1);
@@ -140,6 +158,8 @@ public class PieceManager {
    
    }
    
+   /** a method that moves the most recently added piece one spot down
+   * if it is legal, and the user presses the correct key */
    public static void movePieceDown() {
    
       Piece p = pieces.get(pieces.size() - 1);
@@ -157,6 +177,8 @@ public class PieceManager {
    
    }
    
+   /** a method that moves most recently added piece as far down as possible
+   * if it is legal, and the user presses the correct key */
    public static void spaceFeature() {
    
       Piece p = pieces.get(pieces.size() - 1);
@@ -180,6 +202,13 @@ public class PieceManager {
    
    }
    
+   /** A method that checks if a piece is in collision with another
+   * and cannot move
+   * @param p The Piece object being checked
+   * @param command, the desired movement of the piece
+   * @return collided A boolean declaring whether the piece is free to
+   * move (false) or not (true)
+   */
    public static boolean checkIfCollided(Piece p,String command) {
    
       ArrayList<String> coords = p.getCoords();
@@ -248,6 +277,14 @@ public class PieceManager {
    
    }
    
+   /** A method that ensures that a taken spot preventing a piece from moving
+   * isn't it's own
+   * @param X the x position of the spot
+   * @param Y the y position of the spot
+   * coords the current taken coordinates of the piece wishing to be moved
+   * @return ownSpot a boolean declaring whether the collided spot belongs
+   * to the current piece wishing to be moved
+   */
    public static boolean checkIfOwnSpot(int X,int Y,ArrayList<String> coords) {
    
       boolean ownSpot = false;
@@ -269,6 +306,7 @@ public class PieceManager {
    
    }
    
+   /** A method that draws all existing pieces on the Tetris grid */
    public void drawPieces(Graphics g) {
    
       for (int i = 0; i < pieces.size(); i++) {

@@ -1,8 +1,16 @@
+/**
+* Main class that creates the window for 
+* the Tetris game
+* @author Ethan James
+*/
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Tetris {
 
+   /** main method that creates the Tetris window
+   * that packs around the GamePanel object */
    public static void main(String[] args) {
    
       JFrame frame = new JFrame("Shlong Tetris");
