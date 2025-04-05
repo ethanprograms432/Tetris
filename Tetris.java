@@ -13,7 +13,7 @@ public class Tetris {
    * that packs around the GamePanel object */
    public static void main(String[] args) {
    
-      JFrame frame = new JFrame("Shlong Tetris");
+      JFrame frame = new JFrame("Tetris");
       frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       frame.setLayout(new FlowLayout());
       
